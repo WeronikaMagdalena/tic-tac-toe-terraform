@@ -1,8 +1,8 @@
-# Jane Doe - Terraform, EC2, TicTacToe report
+# Weronika Wójcik - Terraform, EC2, TicTacToe report
 
 - Course: *Cloud programming*
-- Group:
-- Date:
+- Group: Remotely
+- Date: 04/06/2024
 
 ## Environment architecture
 
