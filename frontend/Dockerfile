@@ -7,4 +7,9 @@ WORKDIR /home/stud
 COPY src/ .
 
 ENTRYPOINT ["busybox"]
+<<<<<<< HEAD
 CMD ["httpd", "-f", "-v", "-p", "8081"]
+=======
+CMD ["httpd", "-f", "-v", "-p", "8081"]
+EXPOSE 8081
+>>>>>>> 53d668d (changes)
