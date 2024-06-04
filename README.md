@@ -27,12 +27,12 @@ Screenshots of configured AWS services. Screenshots of your application running.
 
 ## Reflections
 
-- What did you learn?
+- What did you learn?\
     *Patience*
-- What obstacles did you overcome?
+- What obstacles did you overcome?\
     *Nothing working.*
-- What did you help most in overcoming obstacles?
+- What did you help most in overcoming obstacles?\
     *Following the example of the lab for running basic app in the instance and applying those steps*
     *for my application.*
-- Was that something that surprised you?
+- Was that something that surprised you?\
     *That after doing it once it is actually quite easy but to do it for the first time it takes ages.*
