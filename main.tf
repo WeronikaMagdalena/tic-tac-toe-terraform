@@ -87,15 +87,15 @@ resource "aws_security_group" "tictactoe_sg" {
 }
 
 resource "aws_instance" "tf-web-server" {
-  ami                         = "ami-080e1f13689e07408"
+  ami                         = "ami-00beae93a2d981137"
   instance_type               = "t2.micro"
   key_name                    = "vockey"
   subnet_id                   = aws_subnet.public_subnet.id
   associate_public_ip_address = true
   vpc_security_group_ids      = [aws_security_group.tictactoe_sg.id]
 
-  user_data = <<-EOF
-    #!/bin/bash
+user_data = <<-EOF
+#!/bin/bash
 API_URL="http://169.254.169.254/latest/api"
 TOKEN=$(curl -X PUT "$API_URL/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 600")
 TOKEN_HEADER="X-aws-ec2-metadata-token: $TOKEN"
@@ -108,20 +108,31 @@ VPC_ID=$(curl -H "$TOKEN_HEADER" -s $METADATA_URL/network/interfaces/macs/$INTER
 
 echo "Your EC2 instance works in: AvailabilityZone: $AZONE, VPC: $VPC_ID, VPC subnet: $SUBNET_ID, IP address: $IP_V4"
 
+sudo yum update
+sudo yum install -y git
+
 sudo chmod a+w /tmp
 
 echo "$IP_V4" | sudo tee /tmp/ec2_ip_address.txt
-# echo "$IP_V4" > /tmp/ec2_ip_address.txt
 
-rm -rf a5-zuzaszk
-git clone https://github.com/pwr-cloudprogramming/a5-zuzaszk
+rm -rf a5-WeronikaMagdalena
+git clone https://github.com/pwr-cloudprogramming/a5-WeronikaMagdalena.git
+cd a5-WeronikaMagdalena
 
-cd a5-zuzaszk
+sudo yum install -y stress-ng
+
+sudo systemctl start docker
+sudo groupadd docker
+sudo usermod -aG docker $USER
+newgrp docker
+sudo curl -L "https://github.com/docker/compose/releases/download/v2.12.2/docker-compose-$(uname -s)-$(uname -m)"  -o /usr/local/bin/docker-compose
+sudo mv /usr/local/bin/docker-compose /usr/bin/docker-compose
+sudo chmod +x /usr/bin/docker-compose
 
 docker-compose build --build-arg ip="$IP_V4" --no-cache
 
 docker-compose up -d
-  EOF
+EOF
 
   user_data_replace_on_change = true
 
