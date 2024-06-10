@@ -86,7 +86,17 @@ resource "aws_security_group" "tictactoe_sg" {
   }
 }
 
-resource "aws_instance" "tf-web-server" {
+resource "aws_secretsmanager_secret" "github_key" {
+  name = "myproject/privkey"
+  recovery_window_in_days = 0
+}
+
+resource "aws_secretsmanager_secret_version" "github_key_value" {
+secret_id = aws_secretsmanager_secret.github_key.id
+secret_string = file("repo_key")
+}
+
+resource "aws_instance" "webserver" {
   ami                         = "ami-00beae93a2d981137"
   instance_type               = "t2.micro"
   key_name                    = "vockey"
@@ -94,40 +104,13 @@ resource "aws_instance" "tf-web-server" {
   associate_public_ip_address = true
   vpc_security_group_ids      = [aws_security_group.tictactoe_sg.id]
 
-user_data = <<-EOF
-#!/bin/bash
-METADATA_URL="http://169.254.169.254/latest/meta-data"
-IP_V4=$(curl -H "$TOKEN_HEADER" -s $METADATA_URL/public-ipv4)
-
-sudo yum update
-sudo yum install -y git
-
-sudo chmod a+w /tmp
-
-echo "$IP_V4" | sudo tee /tmp/ec2_ip_address.txt
-
-rm -rf a5-WeronikaMagdalena
-git clone git@github.com:pwr-cloudprogramming/a5-WeronikaMagdalena.git
-cd a5-WeronikaMagdalena
-
-sudo yum install -y stress-ng
-
-sudo systemctl start docker
-sudo groupadd docker
-sudo usermod -aG docker $USER
-newgrp docker
-sudo curl -L "https://github.com/docker/compose/releases/download/v2.12.2/docker-compose-$(uname -s)-$(uname -m)"  -o /usr/local/bin/docker-compose
-sudo mv /usr/local/bin/docker-compose /usr/bin/docker-compose
-sudo chmod +x /usr/bin/docker-compose
-
-docker-compose build --build-arg ip="$IP_V4" --no-cache
-
-docker-compose up -d
-EOF
-
   user_data_replace_on_change = true
 
   tags = {
     Name = "TicTacToe-Web-Server"
   }
+  
+  # This resource contains arguments related to instruction only
+  iam_instance_profile = "LabInstanceProfile"
+  user_data = file("setup.sh")
 }
