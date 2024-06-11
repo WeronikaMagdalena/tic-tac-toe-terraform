@@ -7,7 +7,7 @@
 ## Environment architecture
 
 ### Description
-This project deploys a TicTacToe game application on AWS using Terraform. The infrastructure consists of the following components:
+This project deploys a TicTacToe game application in EC2 instance using Terraform.
 
 ### Scheme
 - **VPC (Virtual Private Cloud)**: Provides an isolated network environment for the deployment of resources. The VPC is configured with a CIDR block of "10.0.0.0/16" to accommodate the required resources.
@@ -24,7 +24,7 @@ This project deploys a TicTacToe game application on AWS using Terraform. The in
 
 - **Secrets Management**: 
   - *aws_secretsmanager_secret*: Creates a secret named "myproject/privkey" in AWS Secrets Manager with a recovery window of 0 days.
-  - *aws_secretsmanager_secret_version*: Associates a secret version with the created secret, retrieving the secret string from a file named "repo_key".
+  - *aws_secretsmanager_secret_version*: Associates a secret version with the created secret, retrieving the secret string from file "repo_key".
 
 - **EC2 Instance**: An EC2 instance named "tf-web-server" is provisioned with the specified AMI and instance type. It is launched in the public subnet and associated with the security group allowing SSH and HTTP traffic. User data script "setup.sh" is provided for instance initialization.
 
@@ -37,11 +37,12 @@ Screenshots of configured AWS services. Screenshots of your application running.
 ## Reflections
 
 - What did you learn?\
-    *Patience*
+    *Patience.*
+    *How to run an application in EC2 instance provisioned using terraform.*
 - What obstacles did you overcome?\
     *Nothing working.*
+    *Bash script caused me many problems, mainly with accessing private repo, operating on Docker and changing permissions.*
 - What did you help most in overcoming obstacles?\
-    *Following the example of the lab for running basic app in the instance and applying those steps*
-    *for my application.*
+    *Following the example of the lab for running simple app in the instance and applying those steps for my application as well as additional materials on e-portal and ✨chat-gpt✨.*
 - Was that something that surprised you?\
     *That after doing it once it is actually quite easy but to do it for the first time it takes ages.*

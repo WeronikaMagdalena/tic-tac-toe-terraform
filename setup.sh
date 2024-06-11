@@ -24,7 +24,6 @@ echo "Your EC2 instance works in: AvailabilityZone: $AZONE, VPC: $VPC_ID, VPC su
 sudo chmod a+w /tmp
 
 echo "$IP_V4" | sudo tee /tmp/ec2_ip_address.txt
-# echo "$IP_V4" > /tmp/ec2_ip_address.txt
 
 HOME=/home/ec2-user
 aws secretsmanager get-secret-value --region us-east-1 \
