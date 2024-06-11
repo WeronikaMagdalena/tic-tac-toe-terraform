@@ -32,8 +32,8 @@ This project deploys a TicTacToe game application in EC2 instance using Terrafor
 
 Screenshots of configured AWS services. Screenshots of your application running.
 
-![Game](img/ss1.PNG)
 ![Start](img/ss2.PNG)
+![Game](img/ss1.PNG)
 ![EC2](img/ss3.PNG)
 
 ## Reflections
