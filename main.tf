@@ -72,6 +72,15 @@ resource "aws_vpc_security_group_ingress_rule" "allow_ssh" {
   to_port           = 22
 }
 
+# resource "aws_secretsmanager_secret" "github_key" {
+#   name = "myproject/privkey"
+#   recovery_window_in_days = 0
+# }
+
+# resource "aws_secretsmanager_secret_version" "github_key_value" {
+# secret_id = aws_secretsmanager_secret.github_key.id
+# secret_string = file("repo_key")
+# }
 
 resource "aws_instance" "tf-web-server" {
   ami                         = "ami-08a0d1e16fc3f61ea"
@@ -80,45 +89,9 @@ resource "aws_instance" "tf-web-server" {
   subnet_id                   = aws_subnet.public_subnet.id
   associate_public_ip_address = "true"
   vpc_security_group_ids      = [aws_security_group.allow_ssh_http.id]
-  user_data                   = <<-EOF
-#!/bin/bash
-sudo yum install -y docker
-sudo yum install -y git
-sudo systemctl start docker
-sudo groupadd docker
-sudo usermod -aG docker $USER
-newgrp docker
-sudo curl -L "https://github.com/docker/compose/releases/download/v2.12.2/docker-compose-$(uname -s)-$(uname -m)"  -o /usr/local/bin/docker-compose
-sudo mv /usr/local/bin/docker-compose /usr/bin/docker-compose
-sudo chmod +x /usr/bin/docker-compose
-
-API_URL="http://169.254.169.254/latest/api"
-TOKEN=$(curl -X PUT "$API_URL/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 600")
-TOKEN_HEADER="X-aws-ec2-metadata-token: $TOKEN"
-METADATA_URL="http://169.254.169.254/latest/meta-data"
-AZONE=$(curl -H "$TOKEN_HEADER" -s $METADATA_URL/placement/availability-zone)
-IP_V4=$(curl -H "$TOKEN_HEADER" -s $METADATA_URL/public-ipv4)
-INTERFACE=$(curl -H "$TOKEN_HEADER" -s $METADATA_URL/network/interfaces/macs/ | head -n1)
-SUBNET_ID=$(curl -H "$TOKEN_HEADER" -s $METADATA_URL/network/interfaces/macs/$INTERFACE/subnet-id)
-VPC_ID=$(curl -H "$TOKEN_HEADER" -s $METADATA_URL/network/interfaces/macs/$INTERFACE/vpc-id)
-
-echo "Your EC2 instance works in: AvailabilityZone: $AZONE, VPC: $VPC_ID, VPC subnet: $SUBNET_ID, IP address: $IP_V4"
-
-sudo chmod a+w /tmp
-
-echo "$IP_V4" | sudo tee /tmp/ec2_ip_address.txt
-# echo "$IP_V4" > /tmp/ec2_ip_address.txt
-
-rm -rf a5-WeronikaMagdalena
-git clone https://github.com/pwr-cloudprogramming/a5-WeronikaMagdalena
-
-cd a5-WeronikaMagdalena
-
-docker-compose build --build-arg ip="$IP_V4" --no-cache
-
-docker-compose up -d
-
-EOF
+  
+  iam_instance_profile = "LabInstanceProfile"
+  user_data = file("setup.sh")             
   user_data_replace_on_change = true
   tags = {
     Name = "TicTacToe-WW"
