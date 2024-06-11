@@ -37,10 +37,10 @@ Screenshots of configured AWS services. Screenshots of your application running.
 ## Reflections
 
 - What did you learn?\
-    *Patience.*
+    *Patience.*\
     *How to run an application in EC2 instance provisioned using terraform.*
 - What obstacles did you overcome?\
-    *Nothing working.*
+    *Nothing working.*\
     *Bash script caused me many problems, mainly with accessing private repo, operating on Docker and changing permissions.*
 - What did you help most in overcoming obstacles?\
     *Following the example of the lab for running simple app in the instance and applying those steps for my application as well as additional materials on e-portal, Zuzanna Aszkiełowicz and ✨chat-gpt✨.*
