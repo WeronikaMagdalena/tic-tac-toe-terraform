@@ -2,7 +2,7 @@
 
 - Course: *Cloud programming*
 - Group: Remotely
-- Date: 04/06/2024
+- Date: 10/05/2024
 
 ## Environment architecture
 
@@ -32,7 +32,9 @@ This project deploys a TicTacToe game application in EC2 instance using Terrafor
 
 Screenshots of configured AWS services. Screenshots of your application running.
 
-![Sample image](img/sample-image.png)
+![Sample image](img/ss1.png)
+![Sample image](img/ss2.png)
+![Sample image](img/ss3.png)
 
 ## Reflections
 
