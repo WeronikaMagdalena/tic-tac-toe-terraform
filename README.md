@@ -34,7 +34,10 @@ Screenshots of configured AWS services. Screenshots of your application running.
 
 ![Start](img/ss2.PNG)
 ![Game](img/ss1.PNG)
-![EC2](img/ss3.PNG)
+![EC2](img/vpc.PNG)
+![EC2](img/subnet.PNG)
+![EC2](img/igw.PNG)
+![EC2](img/rt.PNG)
 
 ## Reflections
 
