@@ -55,5 +55,5 @@ Screenshots of configured AWS services. Screenshots of your application running.
 - What did you help most in overcoming obstacles?\
     *Following the example of the lab for running simple app in the instance and applying those steps for my application as well as additional materials on e-portal, Zuzanna Aszkiełowicz and ✨chat-gpt✨.*
 - Was that something that surprised you?\
-    *That after doing it once it is actually quite easy but to do it for the first time it takes ages.*/
+    *That after doing it once it is actually quite easy but to do it for the first time it takes ages.*\
     *I take it back, then it stopped working for no reason.*
