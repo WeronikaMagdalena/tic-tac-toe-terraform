@@ -42,11 +42,16 @@ Screenshots of configured AWS services. Screenshots of your application running.
 ## Reflections
 
 - What did you learn?\
-    *Patience.*\
-    *How to run an application in EC2 instance provisioned using terraform.*
+    *How to deal with obstacles that appear on every step.*\
+    *How terraform file works and it's structure.*\
+    *How to move efficiently in AWS.*\
+    *How to use bash script and run it on virtual machine through terraform in provisioned enviroment in a way it works run all at once.*\
+    *How to connect with instance from my machine.*\
+    *How to write readme files.*\
 - What obstacles did you overcome?\
     *Nothing working.*\
     *Bash script caused me many problems, mainly with accessing private repo, operating on Docker and changing permissions.*
+    *Problems related with AWS like volume.*\
 - What did you help most in overcoming obstacles?\
     *Following the example of the lab for running simple app in the instance and applying those steps for my application as well as additional materials on e-portal, Zuzanna Aszkiełowicz and ✨chat-gpt✨.*
 - Was that something that surprised you?\
