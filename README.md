@@ -1,7 +1,6 @@
 # Weronika Wójcik - Terraform, EC2, TicTacToe report
 
 - Course: *Cloud programming*
-- Group: Remotely
 - Date: 10/05/2024
 
 ## Environment architecture
@@ -38,22 +37,3 @@ Screenshots of configured AWS services. Screenshots of your application running.
 ![EC2](img/subnet.PNG)
 ![EC2](img/igw.PNG)
 ![EC2](img/rt.PNG)
-
-## Reflections
-
-- What did you learn?\
-    *How to deal with obstacles that appear on every step.*\
-    *How terraform file works and it's structure.*\
-    *How to move efficiently in AWS.*\
-    *How to use bash script and run it on virtual machine through terraform in provisioned enviroment in a way it works run all at once.*\
-    *How to connect with instance from my machine.*\
-    *How to write readme files.*
-- What obstacles did you overcome?\
-    *Nothing working.*\
-    *Bash script caused me many problems, mainly with accessing private repo, operating on Docker and changing permissions.*
-    *Problems related with AWS like volume.*
-- What did you help most in overcoming obstacles?\
-    *Following the example of the lab for running simple app in the instance and applying those steps for my application as well as additional materials on e-portal and ✨chat-gpt✨.*
-- Was that something that surprised you?\
-    *That after doing it once it is actually quite easy but to do it for the first time it takes ages.*\
-    *I take it back, then it stopped working for no reason.*
