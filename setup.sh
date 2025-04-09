@@ -42,7 +42,7 @@ ssh-keyscan github.com >> $HOME/.ssh/known_hosts
 sudo chown ec2-user:ec2-user $HOME/.ssh/*
     
 rm -rf a5-WeronikaMagdalena
-sudo su - ec2-user -c "cd ; git clone git@github.com:pwr-cloudprogramming/a5-WeronikaMagdalena.git"
+sudo su - ec2-user -c "cd ; git clone git@github.com:WeronikaMagdalena/tic-tac-toe-terraform.git"
 
 cd $HOME/a5-WeronikaMagdalena
 
